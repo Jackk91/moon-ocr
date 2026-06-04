@@ -5,7 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 
 [[kv_namespaces]]
 binding = "OAUTH_KV"
-id = "97624290963944758e551e4db9f0a28c"
+id = "your-kv-namespace-id"
 
 [vars]
-PUBLIC_URL = "https://ocr.moon.io.vn"
+PUBLIC_URL = "https://your-domain.com"
