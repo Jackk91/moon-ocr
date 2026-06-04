@@ -1,0 +1,11 @@
+name = "moon-ocr"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-06-04"
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "OAUTH_KV"
+id = "97624290963944758e551e4db9f0a28c"
+
+[vars]
+PUBLIC_URL = "https://ocr.moon.io.vn"

@@ -1,0 +1,4 @@
+GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-client-secret
+JWT_SECRET=your-32-char-min-secret
+OAUTH_REDIRECT=http://localhost:8788/api/auth/callback
