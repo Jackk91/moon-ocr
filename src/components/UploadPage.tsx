@@ -28,7 +28,7 @@ export default function UploadPage({ user, onLogout }: Props) {
 
   const addFiles = useCallback((list: FileList | File[]) => {
     const valid = Array.from(list).filter((f) =>
-      ["image/png", "image/jpeg", "image/webp", "image/jpg"].includes(f.type),
+      ["image/png", "image/jpeg", "image/webp", "image/jpg", "application/pdf"].includes(f.type),
     )
     setFiles((prev) => {
       const currentKeys = new Set(prev.map((x) => fileKey(x.file)))
@@ -141,9 +141,7 @@ export default function UploadPage({ user, onLogout }: Props) {
         {/* Header */}
         <div className="mb-3 flex items-center justify-between rounded-xl bg-white p-3 shadow-sm sm:mb-8 sm:p-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">
-              MO
-            </div>
+            <img src="/logo-m.svg" alt="Moon OCR" className="h-10 w-10" />
             <div>
               <h1 className="text-lg font-bold text-gray-800">Moon OCR</h1>
               <p className="text-xs text-gray-400">Upload tài liệu lên Drive</p>
@@ -175,7 +173,7 @@ export default function UploadPage({ user, onLogout }: Props) {
               : "border-gray-300 bg-white hover:border-blue-400 hover:bg-blue-50/50"
           }`}
         >
-          <input ref={inputRef} type="file" multiple accept="image/png,image/jpeg,image/webp" className="hidden" onChange={handleFiles} />
+          <input ref={inputRef} type="file" multiple accept="image/png,image/jpeg,image/webp,application/pdf" className="hidden" onChange={handleFiles} />
           <svg
             className={`mx-auto mb-4 h-14 w-14 transition-colors ${dragOver ? "text-blue-500" : "text-gray-300"}`}
             fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -186,7 +184,7 @@ export default function UploadPage({ user, onLogout }: Props) {
           <p className="text-gray-600">
             <span className="font-semibold text-blue-600">Nhấp để chọn</span> hoặc kéo thả ảnh vào đây
           </p>
-          <p className="mt-1 text-sm text-gray-400">Hỗ trợ PNG, JPG, WebP</p>
+          <p className="mt-1 text-sm text-gray-400">Hỗ trợ PNG, JPG, WebP, PDF</p>
         </div>
         <Promotion />
 
@@ -199,7 +197,15 @@ export default function UploadPage({ user, onLogout }: Props) {
             <div className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 md:grid-cols-4">
               {files.map((f) => (
                 <div key={f.id} className="group relative overflow-hidden rounded-lg border bg-white shadow-sm transition hover:shadow-md">
-                  <img src={f.previewUrl} alt={f.file.name} className="h-32 w-full object-cover" />
+                  {f.file.type === "application/pdf" ? (
+                    <div className="flex h-32 items-center justify-center bg-gray-100">
+                      <svg className="h-12 w-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                  ) : (
+                    <img src={f.previewUrl} alt={f.file.name} className="h-32 w-full object-cover" />
+                  )}
                   <div className="truncate px-2 py-1.5 text-xs text-gray-600">{f.file.name}</div>
                   <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/40 to-transparent p-2 opacity-0 transition group-hover:opacity-100">
                     <span className="text-[10px] text-white">{(f.file.size / 1024 / 1024).toFixed(1)} MB</span>
@@ -285,6 +291,12 @@ export default function UploadPage({ user, onLogout }: Props) {
                       </svg>
                       {f.fileName}
                     </a>
+                    {f.fileName.endsWith('.pdf') && (
+                      <a href={f.webViewLink} target="_blank" rel="noopener noreferrer"
+                        className="ml-2 inline-flex items-center gap-1 rounded bg-red-100 px-2 py-0.5 text-xs text-red-700 hover:bg-red-200">
+                        Xem trước
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
