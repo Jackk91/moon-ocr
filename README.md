@@ -6,6 +6,7 @@ Upload và quản lý file OCR với Google Drive, hỗ trợ xác thực Google
 
 - Đăng nhập bằng tài khoản Google (OAuth 2.0 với PKCE)
 - Upload file lên Google Drive (thư mục `OCR_Uploads`)
+- Hỗ trợ các loại file: PNG, JPEG, WebP, PDF
 - Kiểm tra file trùng lặp trước khi upload
 - Hiển thị danh sách file đã upload
 - Reupload file nếu cần
