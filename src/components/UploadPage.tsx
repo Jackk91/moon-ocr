@@ -1,6 +1,7 @@
 import { useCallback, useState, useRef, DragEvent, ChangeEvent } from "react"
 import type { UserInfo, ApiUploadResponse } from "../types"
 import { uploadFiles, reuploadFiles, logout } from "../lib/api"
+import Promotion from "./Promotion"
 
 interface Props {
   user: UserInfo
@@ -134,8 +135,9 @@ export default function UploadPage({ user, onLogout }: Props) {
 
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="flex-1 p-4 sm:p-6">
-        <div className="mx-auto max-w-3xl">
+      <div className="relative flex-1 p-4 sm:p-6">
+        <div className="flex flex-col gap-6 lg:flex-row lg:justify-center">
+        <div className="min-w-0 w-full max-w-3xl">
         {/* Header */}
         <div className="mb-3 flex items-center justify-between rounded-xl bg-white p-3 shadow-sm sm:mb-8 sm:p-4">
           <div className="flex items-center gap-3">
@@ -186,6 +188,7 @@ export default function UploadPage({ user, onLogout }: Props) {
           </p>
           <p className="mt-1 text-sm text-gray-400">Hỗ trợ PNG, JPG, WebP</p>
         </div>
+        <Promotion />
 
         {/* File list */}
         {files.length > 0 && (
@@ -354,6 +357,7 @@ export default function UploadPage({ user, onLogout }: Props) {
             )}
           </div>
         )}
+        </div>
         </div>
       </div>
       <footer className="mt-auto border-t border-gray-200 px-4 pt-4 pb-3 text-center text-[10px] text-gray-500 sm:pt-6 sm:pb-4 sm:text-xs">

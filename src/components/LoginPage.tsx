@@ -1,3 +1,5 @@
+import Promotion from "./Promotion"
+
 interface LoginPageProps {
   onLogin: () => void
 }
@@ -37,6 +39,7 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
         <p className="text-xs text-gray-400">
           Ứng dụng chỉ yêu cầu quyền truy cập vào file do ứng dụng tạo ra
         </p>
+          <Promotion variant="inline" />
         </div>
       </div>
       <footer className="border-t border-gray-200 px-4 pt-4 pb-3 text-center text-[10px] text-gray-500 sm:pt-6 sm:pb-4 sm:text-xs">
