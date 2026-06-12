@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "pages:dev": "wrangler pages dev -- npx vite",
-    "pages:deploy": "vite build && wrangler pages deploy ./dist --project-name=moon-ocr"
+    "pages:deploy": "vite build && wrangler pages deploy ./dist --project-name=moon-ocr --branch=production"
   },
   "dependencies": {
     "hono": "^4.6.0",
